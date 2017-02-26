@@ -1,0 +1,12 @@
+# Compiled class file
+*.class
+
+# log file
+*.log
+
+# Package files
+*.jar
+*.ear
+
+# netBeans files
+/nbproject/*
