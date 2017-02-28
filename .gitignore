@@ -1,5 +1,6 @@
 # Compiled class file
 *.class
+*/build/*
 
 # log file
 *.log
@@ -9,5 +10,5 @@
 *.ear
 
 # netBeans files
-nbproject/*
+*/nbproject/*
 
