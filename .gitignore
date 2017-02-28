@@ -9,5 +9,5 @@
 *.ear
 
 # netBeans files
-/nbproject/
+nbproject/*
 
