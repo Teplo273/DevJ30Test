@@ -9,5 +9,4 @@
 *.ear
 
 # netBeans files
-J30Client/nbproject/
-J30Server/nbproject/
+*/nbproject/
