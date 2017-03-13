@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.LinkedList;
-import transfer.TCPRequests.Request;
+import transfer.TCPRequests.ClientRequests.ClientRequestTypeImpl;
 import transfer.objects.DictionaryItem;
 
 public class TCPconnectorImpl implements Connector<DictionaryItem> {
@@ -26,7 +26,7 @@ public class TCPconnectorImpl implements Connector<DictionaryItem> {
     }
 
     
-    private void send(Request data) throws IOException {
+    private void send(ClientRequestTypeImpl data) throws IOException {
         out.writeObject(data);
         String status = new StringBuilder().append("отправка: ")
                 .append(data.toString())

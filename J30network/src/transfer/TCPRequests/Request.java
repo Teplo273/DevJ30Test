@@ -1,13 +1,27 @@
+
+
 package transfer.TCPRequests;
 
+import transfer.TCPRequests.ClientRequests.ClientRequestTypeImpl;
+import java.io.Serializable;
 import transfer.objects.DictionaryItem;
 
-public enum Request {
-    FindByEng, FindByRus, SaveItem, DeleteItem, Disconnect;
+/**
+ *
+ * @author kirill
+ */
+public class Request implements Serializable{
     
+    private final ClientRequestTypeImpl type;
     private String command;
     private DictionaryItem item;
     private int id;
+
+    public Request(ClientRequestTypeImpl type) {
+        this.type = type;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -32,6 +46,5 @@ public enum Request {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
+
 }
