@@ -1,15 +1,15 @@
 package j30server;
 
-import j30server.network.TCPClientConnection;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class ServerApp {
+    
+    
+    
+    static {
+        
+        
+    }
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         
         new ServerApp();
 
@@ -18,6 +18,7 @@ public class ServerApp {
     
     
     public ServerApp() {
+        
         
     }
 

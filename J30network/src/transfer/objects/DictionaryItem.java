@@ -5,34 +5,38 @@ import java.util.LinkedList;
 
 public class DictionaryItem implements Serializable{
     
-    private final String eng;
-    private LinkedList<String> rus = new LinkedList<>();
+    private final String name;
+    private LinkedList<String> meanings = new LinkedList<>();
     private int id;
     
 
     public DictionaryItem(String word) {
-        this.eng = word;
+        this.name = word;
     }
 
-    public DictionaryItem(String word, String rus) {
-        this.eng = word;
-        this.rus.add(rus);
+    public DictionaryItem(String word, String meaning) {
+        this.name = word;
+        this.meanings.add(meaning);
     }
 
-    public void addMeaning(String rus) {
-        this.rus.add(rus);
+    public void addMeaning(String meaning) {
+        this.meanings.add(meaning);
     }
 
     public String getWord() {
-        return eng;
+        return name;
     }
 
     public LinkedList<String> getMeanings() {
-        return rus;
+        return meanings;
     }
 
     public int getId() {
         return id;
+    }
+    
+    public void removeMeaning (int index) {
+        meanings.remove(index);
     }
     
     

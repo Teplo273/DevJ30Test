@@ -1,13 +1,13 @@
-package j30server.io;
+package j30server.sqlDB;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import transfer.objects.ItemForList;
 
 /**
  *
  * @author kirill
  */
-public interface Reader<E> {
+public interface Reader<E extends Serializable> {
     
     public E read(int id);
     
@@ -17,6 +17,6 @@ public interface Reader<E> {
     
     public int size();
     
-    public ArrayList<ItemForList> getList();
+    public ArrayList getList();
     
 }

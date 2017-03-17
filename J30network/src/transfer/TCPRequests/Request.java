@@ -19,9 +19,13 @@ public class Request implements Serializable{
 
     public Request(ClientRequestTypeImpl type) {
         this.type = type;
+        
+        
     }
-    
-    
+
+    public ClientRequestTypeImpl getType() {
+        return type;
+    }
 
     public int getId() {
         return id;

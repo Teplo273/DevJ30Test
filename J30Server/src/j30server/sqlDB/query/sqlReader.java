@@ -1,28 +1,36 @@
-package j30server.io.sql;
+package j30server.sqlDB.query;
 
-import j30server.io.Reader;
+import j30server.sqlDB.Reader;
+import java.io.Serializable;
+import sql.query.queryGenerators.QueryGenerator;
 import java.util.ArrayList;
-import transfer.objects.DictionaryItem;
-import transfer.objects.ItemForList;
 
 /**
  *
  * @author kirill
  */
-public class sqlDictionaryReader implements Reader<DictionaryItem>{
+public class sqlReader<E extends Serializable> implements Reader<E>{
+    
+    private final QueryGenerator generator;
+
+    public sqlReader() {
+        this.generator = QueryGenerator.getGenerator();
+    }
+    
+    
 
     @Override
-    public DictionaryItem read(int id) {
+    public E read(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public DictionaryItem[] readAll() {
+    public E[] readAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public DictionaryItem read(String key, String value) {
+    public E read(String key, String value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,7 +40,7 @@ public class sqlDictionaryReader implements Reader<DictionaryItem>{
     }
 
     @Override
-    public ArrayList<ItemForList> getList() {
+    public ArrayList getList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

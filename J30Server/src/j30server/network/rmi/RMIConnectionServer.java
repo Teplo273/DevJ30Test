@@ -1,4 +1,6 @@
-package j30server.network;
+package j30server.network.rmi;
+
+import j30server.network.Server;
 
 public class RMIConnectionServer implements Server{
     

@@ -1,6 +1,8 @@
-package j30server.network;
+package j30server.network.TCP;
 
+import j30server.network.TCP.TCPClientConnection;
 import j30server.ServerApp;
+import j30server.network.Server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

@@ -1,4 +1,4 @@
-package j30server.network;
+package j30server.network.TCP;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,12 +7,14 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import transfer.TCPRequests.Request;
 
-public class TCPClientConnection implements Runnable {
+public class TCPClientConnection implements ClientConnection {
 
     private final Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
+    private RequestDecoder decoder;
 
     public TCPClientConnection(Socket socket) {
         this.socket = socket;
@@ -26,18 +28,12 @@ public class TCPClientConnection implements Runnable {
 
     @Override
     public void run() {
+        decoder = new RequestDecoder(this);
         try {
             while (true) {
                 Object inputData = in.readObject();
-                if (inputData instanceof String) {
-                    String inputString = (String) inputData;
-                    System.out.println(inputString);
-                    doRequest(inputString);
-                    if (inputString.equals("bye")) {
-                        socket.close();
-                        System.out.println(socket.toString() + "disconected");
-                        return;
-                    }
+                if (inputData instanceof Request) {
+                    decoder.doRequest((Request) inputData);
                 }
             }
         } catch (IOException ex) {
@@ -47,21 +43,18 @@ public class TCPClientConnection implements Runnable {
         }
     }
 
-    private <E extends Serializable> void send(E data) throws IOException {
-        out.writeObject(data);
+    @Override
+    public <E extends Serializable> void send(E data) {
+        try {
+            out.writeObject(data);
+        } catch (IOException ex) {
+            Logger.getLogger(TCPClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
         String status = new StringBuilder().append("отправка: ")
                 .append(data.toString())
                 .append("назначение: ")
                 .append(socket.getRemoteSocketAddress().toString()).toString();
     }
     
-    private void doRequest(String request) {
-        switch (request) {
-            case "bye":
-                    break;
-            //case ""
-                    
-        }
-    }
-
 }

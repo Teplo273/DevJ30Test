@@ -1,4 +1,4 @@
-package j30server.network;
+package j30server.network.rmi;
 
 import java.rmi.RemoteException;
 import java.util.List;

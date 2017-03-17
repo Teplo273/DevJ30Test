@@ -1,10 +1,12 @@
-package j30server.io;
+package j30server.sqlDB;
+
+import java.io.Serializable;
 
 /**
  *
  * @author kirill
  */
-public interface Writer<E> {
+public interface Writer<E extends Serializable> {
     
     public void write(E data);
     
