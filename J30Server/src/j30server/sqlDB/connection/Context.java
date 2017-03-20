@@ -1,25 +1,35 @@
 package j30server.sqlDB.connection;
 
-import java.util.Properties;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
  * @author kirill
  */
-public class Context {
-    
-    private static String TABLE;
-    private static String COLUMN1;
-    private static String COLUMN2;
-    
-    
+public class Context implements AutoCloseable {
 
-    public Context() {
-        TABLE = "Dictionary";
-        COLUMN1 = "Word";
-        COLUMN2 = "Meaning 1";
+    private final Connection connection;
+
+    public Context(DBConfig config) throws SQLException {
+        this.connection = DriverManager.getConnection(config.getUrl(), config.getUser(), config.getPassword());
+        System.out.println("Connection to DB " + config.getUrl() + " established.");
+    }
+
+    public Context(String propertiesFile) throws SQLException {
+        this(DBConfig.getInstance(propertiesFile));
     }
     
     
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    @Override
+    public void close() throws Exception {
+        connection.close();
+    }
 
 }
