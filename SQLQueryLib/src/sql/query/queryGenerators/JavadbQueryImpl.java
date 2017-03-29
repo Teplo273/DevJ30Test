@@ -71,6 +71,14 @@ class JavadbQueryImpl implements QueryGenerator {
         }
         f.deleteCharAt(fields.length - 2);
 
+        if (condition == null) {
+            return new StringBuilder()
+                    .append("SELECT ")
+                    .append(" FROM ")
+                    .append(f.toString())
+                    .append(table).toString();
+        }
+
         return new StringBuilder()
                 .append("SELECT ")
                 .append(" FROM ")

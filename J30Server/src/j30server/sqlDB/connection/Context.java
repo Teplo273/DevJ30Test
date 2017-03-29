@@ -8,20 +8,26 @@ import java.sql.SQLException;
  *
  * @author kirill
  */
-public class Context implements AutoCloseable {
+public interface Context extends AutoCloseable {
+
+    public static Connection getConnection(String propertiesFile) throws SQLException {
+        return new ContextImpl(propertiesFile).getConnection();
+    }
+
+}
+
+class ContextImpl implements Context {
 
     private final Connection connection;
 
-    public Context(DBConfig config) throws SQLException {
+    ContextImpl(DBConfig config) throws SQLException {
         this.connection = DriverManager.getConnection(config.getUrl(), config.getUser(), config.getPassword());
         System.out.println("Connection to DB " + config.getUrl() + " established.");
     }
 
-    public Context(String propertiesFile) throws SQLException {
+    ContextImpl(String propertiesFile) throws SQLException {
         this(DBConfig.getInstance(propertiesFile));
     }
-    
-    
 
     public Connection getConnection() {
         return connection;
@@ -31,5 +37,4 @@ public class Context implements AutoCloseable {
     public void close() throws Exception {
         connection.close();
     }
-
 }
