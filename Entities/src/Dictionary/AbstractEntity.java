@@ -6,16 +6,14 @@ package Dictionary;
  */
 public class AbstractEntity {
     
-    private final int id;
+    protected int id;
 
-    public AbstractEntity(int id) {
-        this.id = id;
+    public AbstractEntity() {
+        
     }
 
     public int getId() {
         return id;
     }
-    
-    
     
 }

@@ -1,8 +1,0 @@
-package transfer.TCPRequests.ClientRequests;
-
-import java.io.Serializable;
-import transfer.TCPRequests.RequestType;
-
-public enum ClientRequestTypeImpl implements Serializable, RequestType{
-    GetList, FindByName, FindByMeaning, SaveItem, DeleteItem, Disconnect;
-}

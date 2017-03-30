@@ -2,7 +2,7 @@
 
 package transfer.TCPRequests;
 
-import transfer.TCPRequests.ClientRequests.ClientRequestTypeImpl;
+import transfer.TCPRequests.ClientRequests.ClientRequestType;
 import java.io.Serializable;
 import transfer.objects.DictionaryItem;
 
@@ -12,18 +12,18 @@ import transfer.objects.DictionaryItem;
  */
 public class Request implements Serializable{
     
-    private final ClientRequestTypeImpl type;
+    private final ClientRequestType type;
     private String command;
     private DictionaryItem item;
     private int id;
 
-    public Request(ClientRequestTypeImpl type) {
+    public Request(ClientRequestType type) {
         this.type = type;
         
         
     }
 
-    public ClientRequestTypeImpl getType() {
+    public ClientRequestType getType() {
         return type;
     }
 

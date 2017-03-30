@@ -9,7 +9,7 @@ import java.sql.Connection;
 public interface DaoFactory {
 
     public static ItemDao getJavaDBdao(Connection connection) {
-        return new ItemDao(connection);
+        return new ItemDaoImpl(connection);
     }
 
 }

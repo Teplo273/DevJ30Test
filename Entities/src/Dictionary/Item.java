@@ -8,30 +8,37 @@ import java.util.List;
  *
  * @author kirill
  */
-public class Item extends AbstractEntity{
-    
+public final class Item extends AbstractEntity {
+
     private final String itemName;
-    
+
     private Date date;
-    
+
     private String authorName;
-    
+
     private LinkedList<Meaning> mList = new LinkedList<>();
 
-    public Item(int id, String name) {
-        super(id);
+    public Item(String name) {
         this.itemName = name;
     }
 
-    public Item(int id, String itemName, Date date, String authorName) {
-        super(id);
+    public Item(int id, String name) {
+        this.id = id;
+        this.itemName = name;
+    }
+
+    public Item(String itemName, Date date, String authorName) {
         this.itemName = itemName;
         this.date = date;
         this.authorName = authorName;
     }
-    
-    
 
+    public Item(int id, String itemName, Date date, String authorName) {
+        this.id = id;
+        this.itemName = itemName;
+        this.date = date;
+        this.authorName = authorName;
+    }
 
     public String getItemName() {
         return itemName;
@@ -52,19 +59,17 @@ public class Item extends AbstractEntity{
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
-    
-    public void addMeaning(Meaning meaning){
+
+    public void addMeaning(Meaning meaning) {
         mList.add(meaning);
     }
     
-    public List getMeanings(){
+    public void setMeaning(LinkedList meanings){
+        mList = meanings;
+    }
+
+    public List getMeanings() {
         return mList;
     }
-    
-    
-    
-    
-    
-    
-    
+
 }
