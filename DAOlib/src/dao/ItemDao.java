@@ -22,4 +22,6 @@ public interface ItemDao {
 
     List<Item> getList() throws SQLException;
     
+    void clearStatements() throws SQLException;
+    
 }

@@ -6,10 +6,12 @@ import java.sql.Connection;
  *
  * @author kirill
  */
-public interface DaoFactory {
+public class DaoFactory {
+    
+    private static ItemDao instance;
 
     public static ItemDao getJavaDBdao(Connection connection) {
-        return new ItemDaoImpl(connection);
+        return instance == null ? (instance = new ItemDaoImpl(connection)) : instance;
     }
-
+    
 }

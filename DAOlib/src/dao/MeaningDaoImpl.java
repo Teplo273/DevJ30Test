@@ -111,7 +111,7 @@ final class MeaningDaoImpl extends AbstractDao<Meaning> {
 
     Meaning create(ResultSet rs) throws SQLException {
         return new Meaning(rs.getInt("MEANING.ID"),
-                rs.getString("MEANING.NAME"),
+                rs.getString("MEANING.TEXT"),
                 rs.getDate("MEANING.DATE"),
                 rs.getString("MEANING.AUTHOR"),
                 rs.getInt("MEANING.ITEM_ID"));

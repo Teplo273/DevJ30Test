@@ -1,5 +1,6 @@
 package j30server.network.TCP;
 
+import j30server.RequestDecoder;
 import j30server.network.TCP.TCPClientConnection;
 import j30server.ServerApp;
 import j30server.network.Server;
@@ -16,6 +17,12 @@ public class TCPServer implements Server {
     private Thread[] threads = new Thread[MaxNumberOfThreads];
     private ServerSocket serverSocket;
     private int numberOfThread = 0;
+    private final RequestDecoder decoder;
+
+    public TCPServer(RequestDecoder decoder) {
+        this.decoder = decoder;
+    }
+    
 
     @Override
     public void stopServer() {
@@ -39,8 +46,8 @@ public class TCPServer implements Server {
                         + remoteAdr
                         + " on port: "
                         + clientSocket.getLocalPort());
-                
-                    newThread(clientSocket);
+
+                newThread(clientSocket);
 
             }
         } catch (IOException ex) {
@@ -49,7 +56,7 @@ public class TCPServer implements Server {
     }
 
     private void newThread(Socket clientSocket) {
-                
+
         while (numberOfThread >= MaxNumberOfThreads) {
             try {
                 Thread.sleep(2000);
@@ -57,12 +64,12 @@ public class TCPServer implements Server {
                 Logger.getLogger(TCPServer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        threads[numberOfThread] = new Thread(new TCPClientConnection(clientSocket));
+
+        threads[numberOfThread] = new Thread(new TCPClientConnection(clientSocket, decoder));
         threads[numberOfThread++].start();
 
     }
-    
+
     public void processEnded() {
         numberOfThread--;
     }

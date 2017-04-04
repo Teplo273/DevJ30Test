@@ -2,9 +2,9 @@
 
 package transfer.TCPRequests;
 
+import Dictionary.Item;
 import transfer.TCPRequests.ClientRequests.ClientRequestType;
 import java.io.Serializable;
-import transfer.objects.DictionaryItem;
 
 /**
  *
@@ -13,14 +13,11 @@ import transfer.objects.DictionaryItem;
 public class Request implements Serializable{
     
     private final ClientRequestType type;
-    private String command;
-    private DictionaryItem item;
+    private Item item;
     private int id;
 
     public Request(ClientRequestType type) {
         this.type = type;
-        
-        
     }
 
     public ClientRequestType getType() {
@@ -31,19 +28,11 @@ public class Request implements Serializable{
         return id;
     }
 
-    public DictionaryItem getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public String getCommand() {
-        return command;
-    }
-
-    public void setCommand(String command) {
-        this.command = command;
-    }
-    
-    public void setItem(DictionaryItem item) {
+    public void setItem(Item item) {
         this.item = item;
     }
     

@@ -1,4 +1,4 @@
-package j30server.sqlDB.connection;
+package j30server.DBconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -32,7 +32,7 @@ final class ItemDaoImpl extends AbstractDao<Item> implements ItemDao {
     }
 
     @Override
-    public void create(Item item) throws SQLException {
+    public synchronized void create(Item item) throws SQLException {
         if (insSt == null) {
             insSt = c.prepareStatement(insSql);
         }
@@ -45,7 +45,7 @@ final class ItemDaoImpl extends AbstractDao<Item> implements ItemDao {
     }
 
     @Override
-    public void update(Item item) throws SQLException {
+    public synchronized void update(Item item) throws SQLException {
         if (updSt == null) {
             updSt = c.prepareStatement(updSql);
         }
@@ -108,7 +108,7 @@ final class ItemDaoImpl extends AbstractDao<Item> implements ItemDao {
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public synchronized void delete(int id) throws SQLException {
         if (delSt == null) {
             delSt = c.prepareStatement(delSql);
         }
@@ -118,12 +118,28 @@ final class ItemDaoImpl extends AbstractDao<Item> implements ItemDao {
         }
     }
     
-    private LinkedList<Meaning> getMeaning(int id) throws SQLException{
+    private synchronized LinkedList<Meaning> getMeaning(int id) throws SQLException{
         return mDao.findByItemId(id);
     }
     
-    private Item create(ResultSet rs) throws SQLException {
-        return new Item(rs.getInt("ITEM.ID"), rs.getString("ITEM.NAME"), rs.getDate("ITEM.DATE"), rs.getString("ITEM.AUTHOR"));
+    private synchronized Item create(ResultSet rs) throws SQLException {
+        return new Item(rs.getInt("ITEM.ID"),
+                rs.getString("ITEM.NAME"),
+                rs.getDate("ITEM.DATE"),
+                rs.getString("ITEM.AUTHOR"));
     }
+
+    @Override
+    public void clearStatements() throws SQLException{
+        insSt.close();
+        updSt.close();
+        delSt.close();
+        findIdSt.close();
+        findNameSt.close();
+        getListSt.close();
+        insSt = updSt = delSt = findIdSt = findNameSt = getListSt = null;
+    }
+    
+    
     
 }

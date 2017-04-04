@@ -1,4 +1,4 @@
-package j30server.sqlDB.connection;
+package j30server.DBconnection;
 
 import java.util.ResourceBundle;
 
@@ -16,7 +16,7 @@ class DBConfigImpl implements DBConfig {
     
     @Override
     public String getUrl() {
-        return getProvider() + "://" + getHost() + ":" + getPort();
+        return getProvider() + "://" + getHost() + ":" + getPort() + "/" +getName();
     }
     
     @Override

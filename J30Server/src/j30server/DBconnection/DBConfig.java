@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package j30server.sqlDB.connection;
+package j30server.DBconnection;
 
 import java.util.ResourceBundle;
 
