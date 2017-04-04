@@ -1,10 +1,12 @@
 package Dictionary;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kirill
  */
-public class AbstractEntity {
+public class AbstractEntity  implements Serializable{
     
     protected int id;
 

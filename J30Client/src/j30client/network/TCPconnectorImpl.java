@@ -1,15 +1,14 @@
 package j30client.network;
 
+import Dictionary.Item;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 import transfer.TCPRequests.ClientRequests.ClientRequestType;
-import transfer.objects.DictionaryItem;
 
-public class TCPconnectorImpl implements Connector<DictionaryItem> {
+public class TCPconnectorImpl implements Connector<Item> {
 
 
     private final Socket socket;
@@ -42,7 +41,7 @@ public class TCPconnectorImpl implements Connector<DictionaryItem> {
     }
 
     @Override
-    public DictionaryItem findByWord(String word) {
+    public Item findByWord(String word) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -52,7 +51,7 @@ public class TCPconnectorImpl implements Connector<DictionaryItem> {
     }
 
     @Override
-    public void saveItem(DictionaryItem item) {
+    public void saveItem(Item item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
